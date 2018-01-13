@@ -1,0 +1,11 @@
+text_processing:
+  sequence:
+    - condition: state
+      entity_id: input_boolean.text_notifications
+      state: 'on'
+          
+    - service: notify.Janet
+      data_template:
+        title: "Janet:"
+        message: >- 
+          {{ speech_message | replace("\n","") | replace("   ","") | replace("eight hundred and sixty one thousand","861.000") }}

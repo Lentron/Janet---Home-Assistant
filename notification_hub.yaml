@@ -1,0 +1,13 @@
+notification_hub:
+  sequence:
+    - service: script.speech_processing
+      data_template:
+        media_player: >-
+          {{ media_player }}
+        speech_message: >-
+          {{ speech_message }}
+    - service: script.text_processing
+      data_template:
+        speech_message: >-
+          {{ speech_message }}
+        
