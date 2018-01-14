@@ -85,6 +85,7 @@ input_select:
 
 script:
 ######################################################################################################
+##    within janet_speech_engine the string message is generated with the use of macro's.           ##
 ######################################################################################################
 
   janet_speech_engine:
@@ -294,6 +295,10 @@ script:
           entity_id:
             - input_boolean.janet_alert_mode
 
+######################################################################################################
+##  janet_notification_hub is the bridge between the speech_engine and the processing units.        ##
+######################################################################################################
+
   janet_notification_hub:
     sequence:
       - service: script.janet_speech_processing
@@ -308,6 +313,7 @@ script:
             {{ speech_message }}
 
 ######################################################################################################
+##                  Within janet_speech_processing the TTS-service is called.                       ##
 ######################################################################################################
 
   janet_speech_processing:
@@ -351,6 +357,10 @@ script:
             {{ media_player }}
           message: >-
               {{ speech_message }}
+
+######################################################################################################
+##                  Within janet_text_processing the notify-service is called.                      ##
+######################################################################################################
 
   janet_text_processing:
     sequence:
