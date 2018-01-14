@@ -1,0 +1,13 @@
+- alias: Start Up
+  trigger:
+    - event: start
+      platform: homeassistant
+      
+  action:
+    - service: automation.reload
+    - service: script.speech_engine
+      data:
+        call_greeting: 1
+        call_introduction: 1
+
+  

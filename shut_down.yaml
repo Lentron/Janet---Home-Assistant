@@ -1,0 +1,13 @@
+- alias: Shut Down
+  trigger:
+    - event: shutdown
+      platform: homeassistant
+    - event_type: homeassistant.restart
+      platform: event
+  action:
+    - service: script.speech_engine
+      data:
+        call_bye: 1
+        call_shut_down: 1
+
+  
