@@ -85,15 +85,6 @@ input_select:
 
 script:
 ######################################################################################################
-###Script to send notifications to the ChromeCast Audios during normal hours and only when we are home! Call like this:
-  # action:
-    # service: script.speech_engine
-    # data:
-    #   call_no_announcement
-    #   call_inside_weather
-    #   call_outside_weather
-# # @CCOSTAN
-# Original Repo : https://github.com/CCOSTAN/Home-AssistantConfig
 ######################################################################################################
 
   janet_speech_engine:
