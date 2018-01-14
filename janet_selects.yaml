@@ -1,0 +1,7 @@
+  notification_media_player:
+    name: Source
+    icon: mdi:speaker
+    options:
+      - Chromosaur
+      - RPI
+    initial: RPI

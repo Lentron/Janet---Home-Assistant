@@ -1,0 +1,15 @@
+  notification_volume:
+    name: Volume
+    icon: mdi:volume-high
+    min: 0.0
+    max: 1.0
+    step: 0.01
+    initial: 1.0
+
+  notification_witty:
+    name: Witty
+    icon: mdi:auto-fix
+    min: 0
+    max: 100
+    step: 1
+    initial: 80
