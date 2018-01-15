@@ -38,7 +38,6 @@ automation:
         platform: homeassistant
 
     action:
-      - service: automation.reload
       - service: script.janet_speech_engine
         data:
           call_greeting: 1
