@@ -271,7 +271,7 @@ script:
               {{ shut_down | random }}
             {%- endmacro -%}
 
-            {% set chance = states.input_number.notification_witty.state | round %}
+            {% set chance = states.input_number.janet_notification_witty.state | round %}
 
             {%- macro witty( sentence, witty ) -%}
               {% set number = (range(0, 100)|random) %}
