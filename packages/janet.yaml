@@ -393,7 +393,7 @@ script:
                 entity_id: input_boolean.janet_guest_mode
                 state: 'on'
         #TODO
-      - wait_template: "{{ not is_state('media_player.mpd', 'playing') }}"
+      - wait_template: "{{ not is_state( media_player, 'playing') }}"
         timeout: 00:00:30
 
       - service: media_player.volume_set
@@ -401,7 +401,7 @@ script:
           entity_id: >
             {{ media_player }}
           volume_level: >-
-            {{ states.input_number.notification_volume.state }}
+            {{ states.input_number.janet_notification_volume.state }}
 
       - service: tts.google_say
         data_template:
