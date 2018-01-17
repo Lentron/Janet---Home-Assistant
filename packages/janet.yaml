@@ -94,7 +94,7 @@ script:
         data_template:
           #TODO
           media_player: >-
-            {% if states.input_select.notification_media_player.state == 'Chromosaur' %}
+            {% if states.input_select.janet_notification_media_player.state == 'Chromosaur' %}
                media_player.chromosaur
             {% else %}
                media_player.mpd
