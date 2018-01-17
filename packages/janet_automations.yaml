@@ -13,7 +13,7 @@ automation:
         data:
           entity_id: input_boolean.alert_mode
 
-      - service: script.speech_engine
+      - service: script.janet_speech_engine
         data:
           call_greeting: 1
           call_new_device: 1
