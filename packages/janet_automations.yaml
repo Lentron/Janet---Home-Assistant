@@ -11,7 +11,7 @@ automation:
     action:
       - service: input_boolean.turn_on
         data:
-          entity_id: input_boolean.alert_mode
+          entity_id: input_boolean.janet_alert_mode
 
       - service: script.janet_speech_engine
         data:
