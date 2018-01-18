@@ -408,7 +408,7 @@ script:
           entity_id: >
             {{ media_player }}
           message: >-
-              {{ speech_message }}
+              {{ speech_message | replace("\n","") | replace("   ","") | replace("  "," ") }}
 
 ######################################################################################################
 ##                  Within janet_text_processing the notify-service is called.                      ##
