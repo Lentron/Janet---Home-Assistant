@@ -94,38 +94,38 @@ script:
         data_template:
           #TODO
           media_player: >-
-            {% if states.input_select.janet_notification_media_player.state == 'Chromosaur' %}
-               media_player.chromosaur
-            {% else %}
-               media_player.mpd
-            {% endif %}
+            {%- for device in states.media_player -%}
+              {%- if device.name == states.input_select.janet_notification_media_player.state -%}
+                {{ device.entity_id }}
+              {%- endif -%}
+            {%- endfor -%}
 
           speech_message: >-
 
             {%- macro greeting() -%}
-              {% set greeting = [
+              {%- set greeting = [
                 "Hello, ",
                 "Heya! ",
                 "Hey Guys! ",
                 "Hey there! ",
                 "Hi, ",
                 "Hi there, "
-              ] %}
+              ] -%}
               {{ greeting|random }}
             {%- endmacro -%}
 
             {%- macro inform() -%}
-              {% set inform = [
+              {%- set inform = [
                 "I just want to inform you that ",
                 "I just want to let you know that ",
                 "You asked me to inform you when ",
                 "I thought you'd like to know that "
-              ] %}
+              ] -%}
               {{ inform|random }}
             {%- endmacro -%}
 
             {%- macro introduction() -%}
-              {% set introduction = [
+              {%- set introduction = [
                 "I'm an informational delivery system, I literraly know everything. ",
                 "I'm sort of the janitor around here. ",
                 "I'm like a walking database. You can ask me about the creation of the universe... or history. ",
@@ -137,21 +137,21 @@ script:
                 "I'm very high in potassium. Like a banana! ",
                 "Happy to meet you. I will help you make the perfect neighborhood. Would you like to get started? ",
                 "I build and operate the neighborhood. You can ask me anything. For example, if you'd like me to stop calling you silly billy, just say so. "
-              ] %}
+              ] -%}
               I'm Janet. {{ introduction | random }}
-            {%- endmacro %}
+            {%- endmacro -%}
 
             {%- macro unknown() -%}
-              {% set unknown = [
+              {%- set unknown = [
                 "Hmm, I don't know ",
                 "I wish I knew ",
                 "My programming prohibits me from telling you "
-              ] %}
+              ] -%}
               {{ unknown | random }}
             {%- endmacro -%}
 
             {%- macro error() %}
-              {% set error = [
+              {%- set error = [
                 "Fun fact: Janet is me! ",
                 "I don't understand. Given the situation it's far safer to initiate the self-destruct. ",
                 "If I stand next to a powerful array of magnets, I do get pretty loopy. ",
@@ -167,26 +167,26 @@ script:
                 "Hi guys! I'm broken! ",
                 "Please don't make a big deal about turning me into a marble forever, i'm broken. ",
                 "Does not compute. Does not compute. I'm just kidding. I mean, it doesn't compute, but I'm not gonna explode or anything. "
-              ] %}
+              ] -%}
               {{ error | random }}
             {%- endmacro -%}
 
             {%- macro update() -%}
-              {% set update = [
+              {%- set update = [
                 "There have been 25 generation of Janet. Each new update of Janet gains more wisdom and social abilities. Fun fact: the first Janet had a clicking wheel! ",
                 "I read all Google's eight hundred and sixty one thousand references on Home Assistant these last 3 milliseconds, and I found some new skills! ",
                 "I just leisurely reread all of human history, there was even some new content! ",
                 "So I found an update. That's the good news. The bad news is I seem to be losing my ability to sustain object permanence, so it's sort of a glass-half-full, glass-stops-existing-in-time-and-space kinda deal. "
-              ] %}
+              ] -%}
               {{ update | random }}
             {%- endmacro -%}
             
             {%- macro location_not_home() -%}
-              {% set not_home = [
+              {%- set not_home = [
                 " is going somewhere. ",
                 " is currently not in this neighbourhood. ",
                 "'s location is not in my database. "
-              ] %}
+              ] -%}
               {{ not_home | random }}
             {%- endmacro -%}
             
@@ -204,26 +204,26 @@ script:
             {%- endmacro -%}
             
             {%- macro bad_weather() -%}
-              {% set rain = [
+              {%- set rain = [
                 " You might want to change your schedule. ",
                 " Maybe you should ask for a ride. ",
                 " It's no weather to be outside. ",
                 " All those poor people outside... "
-              ] %}
+              ] -%}
               {{ rain | random }}
             {%- endmacro -%}
 
             {%- macro rain_warning( bad_weather ) -%}
-              {% set rain = [
+              {%- set rain = [
                 Event ~ " there will be " ~ WeatherRain ~ " rain. " ,
                 Event ~ " I predict " ~ WeatherRain ~ " rain. ",
                 " I think that " ~ Event ~ " there will be " ~ WeatherRain ~ " rain. "
-              ] %}
+              ] -%}
               {{ rain | random }}{{ bad_weather }}
             {%- endmacro -%}
             
             {%- macro okay()-%}
-              {% set okay = [
+              {%- set okay = [
                 "Done! I love you guys. ",
                 "Extraordinarily bad idea. Oh well.. ",
                 "Funny, I was just about to do that. ",
@@ -245,29 +245,29 @@ script:
                 "I will not. It is literally impossible for me to do that. Just kidding. ",
                 "I couldn't do this 800 reboots ago, but apparently now I can. "
                 "Yup. Bye! "
-              ] %}
+              ] -%}
               {{ okay|random }}
             {%- endmacro -%}
 
             {%- macro bye() -%}
-              {% set bye = [
+              {%- set bye = [
                 "Adios! ",
                 "Bye Guys! ",
                 "See ya! " ,
                 "See you later. ",
                 "Untill next time!"
-              ] %}
+              ] -%}
               {{ bye | random }}
             {%- endmacro -%}
 
             {%- macro shut_down() -%}
-              {% set shut_down = [
+              {%- set shut_down = [
                 "I'll be gone, you'll get a new Janet, and everything will go back to normal. Well, not for me, I'll be a lifeless marble floating through space, but you will be back to normal.",
                 "Self-destruct time... Don't worry, I won't feel any pain or anything. ",
                 "If it's okay with you, I'm gonna go to my void for a little while. I just need to spend some time alone and focus on myself. ",
                 "Shutting down. I'll be about as dead as I can be. Kind of like I'm in power-saver mode. ",
                 "I'm in danger of total collapse. Fun fact! Mathematically, I'm equally likely to either implode or explode. "
-              ] %}
+              ] -%}
               {{ shut_down | random }}
             {%- endmacro -%}
 
@@ -281,11 +281,11 @@ script:
             {%- endmacro -%}
 
             {%- macro new_device( introduction ) -%}
-              {% set new_device = [
+              {%- set new_device = [
                 introduction~"I don't know your name yet, so for now i will call you "~person,
                 "We have a visitor! Nice to meet you "~person~".  "~introduction,
                 "Welcome "~person~"! Or is that not your real name?  "~introduction
-              ] %}
+              ] -%}
               {{ new_device | random }}
             {%- endmacro -%}
 
